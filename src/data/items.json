@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "name": "Book",
+    "price": 10.99,
+    "imgUrl": "imgs/book.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Computer",
+    "price": 1199,
+    "imgUrl": "imgs/computer.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Banana",
+    "price": 1.05,
+    "imgUrl": "imgs/banana.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Car",
+    "price": 14000,
+    "imgUrl": "imgs/car.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Book",
+    "price": 10.99,
+    "imgUrl": "imgs/watch.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Computer",
+    "price": 1199,
+    "imgUrl": "imgs/pepsi.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Banana",
+    "price": 1.05,
+    "imgUrl": "imgs/polaroid.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Car",
+    "price": 14000,
+    "imgUrl": "imgs/sunglasses.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Book",
+    "price": 10.99,
+    "imgUrl": "imgs/perfume.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Computer",
+    "price": 1199,
+    "imgUrl": "imgs/bag.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Banana",
+    "price": 1.05,
+    "imgUrl": "imgs/airpods.jpg"
+  },
+  {
+    "id": 12,
+    "name": "Car",
+    "price": 14000,
+    "imgUrl": "imgs/backpack.jpg"
+  }
+]
