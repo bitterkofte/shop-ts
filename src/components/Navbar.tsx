@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PiBasketLight } from "react-icons/pi";
 import { FiUser } from "react-icons/fi";
-import Cart from "../assets/cart.svg";
+// import Cart from "../assets/cart.svg";
 
 type LinkClassProps = {
   isActive: boolean;

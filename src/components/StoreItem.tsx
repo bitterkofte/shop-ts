@@ -1,5 +1,6 @@
 import { useShoppingCart } from "../context/ShoppingCartContext"
 import { formatCurrency } from "../utilities/formatCurrency"
+import { AiOutlineDelete, AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 type StoreItemProps = {
   id: number
@@ -18,11 +19,25 @@ export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
           <h3 className="">{ name }</h3>
           <p className="">{ formatCurrency(price) }</p>
         </div>
-        <div className='flex'>
-          <button className="p-2 bg-sky-700">-</button>
-          <p>{ getItemQuantity(id) }</p>
-          <button className="p-2 bg-sky-700">+</button>
-        </div>
+        {getItemQuantity(id) === 0 ? (
+          <button className="h-9 bg-sky-700 w-full rounded-lg" onClick={() => increaseCartQuantity(id)}>add</button>
+        ) : (
+          <div className='h-9 flex items-center  rounded-lg select-none'>
+            <button className="grow p-2 flex justify-center bg-gradient-to-r from-red-700 border-y-[1px] border-l-[1px] rounded-l-lg" onClick={() => decreaseCartQuantity(id)}>
+              {getItemQuantity(id) === 1 ? (
+                <AiOutlineDelete/>
+              ) : (
+                <AiOutlineMinusCircle/>
+              )}
+            </button>
+              <p className="w-16 text-xl font-semibold text-center">
+                { getItemQuantity(id) }
+              </p>
+            <button className="grow p-2 flex justify-center bg-gradient-to-l from-green-700 border-y-[1px] border-r-[1px] rounded-r-lg" onClick={() => increaseCartQuantity(id)}>
+              <AiOutlinePlusCircle/>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
