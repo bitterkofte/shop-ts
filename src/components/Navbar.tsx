@@ -9,11 +9,15 @@ type LinkClassProps = {
 }
 
 import { Link, NavLink } from "react-router-dom";
+import { HamburgerMenu } from "./Animated/HamburgerMenu";
 
 export const Navbar = () => {
   const [isHover, setIsHover] = useState<boolean>(false);
+  const [isHamMenu, setIsHamMenu] = useState<boolean>(false);
   const linkClass = ({ isActive, isPending }: LinkClassProps) => isPending ? "text-red-900" : isActive ? "text-lime-500" : "transition-all duration-300 hover:text-neutral-400";
   const hoverAnimation = (bool: boolean) => setIsHover(bool)
+
+  const toggleHamMenu = () => setIsHamMenu(prev => !prev)
 
   return (
     <div className="px-8 py-4 flex items-center justify-between text-3xl bg-emerald-800 select-none">
@@ -30,6 +34,7 @@ export const Navbar = () => {
         </svg>
         <h1 className="text-5xl pt-2">Shop.ts</h1>
       </Link>
+      {/* SECTION Desktop */}
       <div className="flex items-center gap-4 d-lg:hidden">
         <NavLink className={linkClass} to={"/"}>Home</NavLink>
         <NavLink className={linkClass} to={"/store"}>Store</NavLink>
@@ -39,6 +44,18 @@ export const Navbar = () => {
         </div>
         <div className="px-3 py-2 bg-lime-600 rounded-2xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300">
           <FiUser className="w-6" />
+        </div>
+      </div>
+      {/* SECTION Mobile */}
+      <div className=''>
+        <HamburgerMenu isHamMenu={isHamMenu} toggleHamMenu={toggleHamMenu} />
+        <div className={`h-full p-10 pt-40 fixed top-0 flex flex-col items-center gap-4 bg-sky-800 transition-all duration-300 ${isHamMenu ? "right-0 -translate-x-10a" : "-right-60"}`}>
+          <div className="px-3 py-2 bg-lime-600 rounded-2xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300">
+            <FiUser className="w-6" />
+          </div>
+          <NavLink className={linkClass} to={"/"}>Home</NavLink>
+          <NavLink className={linkClass} to={"/store"}>Store</NavLink>
+          <NavLink className={linkClass} to={"/about"}>About</NavLink>
         </div>
       </div>
     </div>
