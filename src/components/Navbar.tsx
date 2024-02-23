@@ -10,20 +10,22 @@ type LinkClassProps = {
 
 import { Link, NavLink } from "react-router-dom";
 import { HamburgerMenu } from "./Animated/HamburgerMenu";
+import { useShoppingCart } from "../context/ShoppingCartContext";
 
 export const Navbar = () => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isHamMenu, setIsHamMenu] = useState<boolean>(false);
+  const { openCart, closeCart, cartQuantity } = useShoppingCart();
   const linkClass = ({ isActive, isPending }: LinkClassProps) => isPending ? "text-red-900" : isActive ? "text-lime-500" : "transition-all duration-300 hover:text-neutral-400";
   const hoverAnimation = (bool: boolean) => setIsHover(bool)
 
   const toggleHamMenu = () => setIsHamMenu(prev => !prev)
 
   return (
-    <div className="px-8 py-4 flex items-center justify-between text-3xl bg-emerald-800 select-none">
+    <div className="px-8 py-4 d-md:px-4 d-md:py-2 flex items-center justify-between text-3xl bg-emerald-800 select-none">
       <Link to={"/"} className="flex items-center gap-4 cursor-pointer" onMouseEnter={() => hoverAnimation(true)} onMouseLeave={() => hoverAnimation(false)}>
         <svg
-          className={`w-16 stroke-lime-500 stroke-1 fill-none transition-all ${isHover ? "translate-x-2" : ""}`}
+          className={`w-16 d-md:w-10 stroke-lime-500 stroke-1 fill-none transition-all ${isHover ? "translate-x-2" : ""}`}
           viewBox="0 0 24 24"
         >
           <path
@@ -32,7 +34,7 @@ export const Navbar = () => {
             strokeLinejoin="round"
           />
         </svg>
-        <h1 className="text-5xl pt-2">Shop.ts</h1>
+        <h1 className="pt-2 text-5xl d-md:text-3xl">Shop.ts</h1>
       </Link>
       {/* SECTION Desktop */}
       <div className="flex items-center gap-4 d-lg:hidden">
@@ -47,9 +49,17 @@ export const Navbar = () => {
         </div>
       </div>
       {/* SECTION Mobile */}
-      <div className=''>
+      <div className='flex items-center gap-2 u-lg:hidden'>
+        <div
+          onClick={openCart} 
+          className="px-2 py-1 relative bg-lime-600 rounded-xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300"
+        >
+          <PiBasketLight className="w-6" />
+          <span className="w-5 h-5 absolute -bottom-3 -right-2 bg-orange-500 text-center pt-[0.8px] text-sm rounded-full">{ cartQuantity }</span>
+        </div>
         <HamburgerMenu isHamMenu={isHamMenu} toggleHamMenu={toggleHamMenu} />
-        <div className={`h-full p-10 pt-40 fixed top-0 flex flex-col items-center gap-4 bg-sky-800 transition-all duration-300 ${isHamMenu ? "right-0 -translate-x-10a" : "-right-60"}`}>
+        <div className={`fixed w-full h-full top-0 left-0 bg-overlay ${!isHamMenu ? "hidden" : ""}`} onClick={toggleHamMenu}/>
+        <div className={`h-full p-10 fixed top-0 flex flex-col justify-center items-center gap-4 bg-sky-800 transition-all duration-300 ${isHamMenu ? "right-0 -translate-x-10a" : "-right-60"}`}>
           <div className="px-3 py-2 bg-lime-600 rounded-2xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300">
             <FiUser className="w-6" />
           </div>

@@ -18,6 +18,9 @@ export default {
         'd-lg': {'max': '1023px'},
         'd-md': {'max': '767px'},
         'd-sm': {'max': '500px'},
+      },
+      colors: {
+        'overlay': '#2e2e2e84'
       }
     },
   },

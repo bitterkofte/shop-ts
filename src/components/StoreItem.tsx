@@ -14,13 +14,13 @@ export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
   return (
     <div className="">
       <img className="w-full h-40 object-cover rounded-t-xl" src={imgUrl} alt={name} />
-      <div className='p-3 bg-gray-500 rounded-b-xl'>
+      <div className='p-4 flex flex-col gap-3 bg-gray-500 rounded-b-xl'>
         <div className="flex justify-between">
-          <h3 className="">{ name }</h3>
+          <h3 className="font-bold">{ name }</h3>
           <p className="">{ formatCurrency(price) }</p>
         </div>
         {getItemQuantity(id) === 0 ? (
-          <button className="h-9 bg-sky-700 w-full rounded-lg" onClick={() => increaseCartQuantity(id)}>add</button>
+          <button className="h-9 bg-lime-600 w-full shadow-lg rounded-lg" onClick={() => increaseCartQuantity(id)}>add</button>
         ) : (
           <div className='h-9 flex items-center  rounded-lg select-none'>
             <button className="grow p-2 flex justify-center bg-gradient-to-r from-red-700 border-y-[1px] border-l-[1px] rounded-l-lg" onClick={() => decreaseCartQuantity(id)}>

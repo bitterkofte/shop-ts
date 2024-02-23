@@ -9,7 +9,7 @@ export const HamburgerMenu = ({ isHamMenu, toggleHamMenu }: HamburgerMenuProps) 
   return (
     <svg
       // className="ham hamRotate ham4"
-      className={`${styles.ham} ${isHamMenu ? styles.active : ""}`}
+      className={`d-md:w-14 ${styles.ham} ${isHamMenu ? styles.active : ""}`}
       viewBox="0 0 100 100"
       // width="80"
       onClick={toggleHamMenu}
