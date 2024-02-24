@@ -20,7 +20,7 @@ export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
           <p className="">{ formatCurrency(price) }</p>
         </div>
         {getItemQuantity(id) === 0 ? (
-          <button className="h-9 bg-lime-600 w-full shadow-lg rounded-lg" onClick={() => increaseCartQuantity(id)}>add</button>
+          <button className="h-9 bg-lime-600 w-full shadow-sm hover:shadow-lg rounded-lg transition-all duration-200" onClick={() => increaseCartQuantity(id)}>add</button>
         ) : (
           <div className='h-9 flex items-center  rounded-lg select-none'>
             <button className="grow p-2 flex justify-center bg-gradient-to-r from-red-700 border-y-[1px] border-l-[1px] rounded-l-lg" onClick={() => decreaseCartQuantity(id)}>

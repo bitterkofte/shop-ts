@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { PiBasketLight } from "react-icons/pi";
 import { FiUser } from "react-icons/fi";
-import allItems from "../data/items.json"
 // import Cart from "../assets/cart.svg";
 
 export type LinkClassProps = {
@@ -9,11 +8,18 @@ export type LinkClassProps = {
   isPending: boolean;
 }
 
+// type Item = {
+//   id: number;
+//   name: string;
+//   price?: number;
+//   imgUrl: string;
+// };
+
 import { Link, NavLink } from "react-router-dom";
 import { HamburgerMenu } from "./Animated/HamburgerMenu";
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { SideNav } from "./SideNav";
-import { AiOutlineDelete, AiOutlineMinusCircle, AiOutlinePlusCircle } from "react-icons/ai";
+import { CartMenu } from "./CartMenu";
 
 export const Navbar = () => {
   const [isHover, setIsHover] = useState<boolean>(false);
@@ -26,7 +32,7 @@ export const Navbar = () => {
   const toggleHamMenu = () => setIsHamMenu(prev => !prev)
   // const toggleCartMenu = () => setIsCartMenu(prev => !prev)
 
-  const itemRetriever = (id: number) => allItems.find(i => i.id === id)
+  
 
   return (
     <div className="px-8 py-4 d-md:px-4 d-md:py-2 flex items-center justify-between text-3xl bg-emerald-800 select-none">
@@ -48,36 +54,11 @@ export const Navbar = () => {
         <NavLink className={linkClass} to={"/"}>Home</NavLink>
         <NavLink className={linkClass} to={"/store"}>Store</NavLink>
         <NavLink className={linkClass} to={"/about"}>About</NavLink>
-        <div className="px-3 py-2 relative bg-lime-600 rounded-2xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300">
-          <PiBasketLight className="w-6" onClick={openCart} />
+        <div className="px-3 py-2 relative bg-lime-600 rounded-2xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300" onClick={openCart}>
+          <PiBasketLight className="w-6" />
           <span className="w-7 h-7 absolute -bottom-3 -right-2 bg-orange-600 text-center pt-[0.8px] text-lg rounded-full">{ cartQuantity }</span>
         </div>
-        <div className={`fixed w-full h-full top-0 left-0 bg-overlay ${!isCartMenu ? "hidden" : ""}`} onClick={closeCart}/>
-        <div className={`z-10 h-full p-10 fixed top-0 flex flex-col justify-center items-center gap-4 bg-sky-800 transition-all duration-300 ${isCartMenu ? "right-0 -translate-x-10a" : "-right-80"}`}>
-          {cartItems.map(ci => (
-            <div key={ci.id} className='w-60 p-3 flex items-center gap-3 text-base bg-slate-700 rounded-lg'>
-              <img className='w-16 h-16 object-cover rounded-lg' src={itemRetriever(ci.id)?.imgUrl} alt={itemRetriever(ci.id)?.name} />
-              <div className='flex-grow'>
-                <p>{ itemRetriever(ci.id)?.name }</p>
-                <div className='w-full h-9 flex items-center rounded-lg select-none'>
-                  <button className="grow p-1 flex justify-center bg-gradient-to-r from-red-700 rounded-l-lg" onClick={() => decreaseCartQuantity(ci.id)}>
-                    {ci.quantity === 1 ? (
-                      <AiOutlineDelete/>
-                    ) : (
-                      <AiOutlineMinusCircle/>
-                    )}
-                  </button>
-                    <p className="w-5 text-xl font-semibold text-center">
-                      { ci.quantity }
-                    </p>
-                  <button className="grow p-1 flex justify-center bg-gradient-to-l from-green-700 rounded-r-lg" onClick={() => increaseCartQuantity(ci.id)}>
-                    <AiOutlinePlusCircle/>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        <CartMenu/>
         <div className="px-3 py-2 bg-lime-600 rounded-2xl cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300">
           <FiUser className="w-6" />
         </div>
@@ -91,7 +72,8 @@ export const Navbar = () => {
           <PiBasketLight className="w-6" />
           <span className="w-5 h-5 absolute -bottom-3 -right-2 bg-orange-500 text-center pt-[0.8px] text-sm rounded-full">{ cartQuantity }</span>
         </div>
-        <div className={`fixed w-full h-full top-0 left-0 bg-overlay ${!isCartMenu ? "hidden" : ""}`} onClick={closeCart}/>
+        <CartMenu/>
+        {/* <div className={`fixed w-full h-full top-0 left-0 bg-overlay ${!isCartMenu ? "hidden" : ""}`} onClick={closeCart}/>
         <div className={`z-10 h-full p-10 fixed top-0 flex flex-col justify-center items-center gap-4 bg-sky-800 transition-all duration-300 ${isCartMenu ? "right-0 -translate-x-10a" : "-right-60"}`}>
           {cartItems.map(ci => (
             <div className='p-3 flex items-center gap-3 bg-slate-600 rounded-lg'>
@@ -99,7 +81,7 @@ export const Navbar = () => {
               <p>{ ci.quantity }</p>
             </div>
           ))}
-        </div>
+        </div> */}
         <HamburgerMenu isHamMenu={isHamMenu} toggleHamMenu={toggleHamMenu} />
         <SideNav isHamMenu={isHamMenu} linkClass={linkClass} toggleHamMenu={toggleHamMenu} />
       </div>
