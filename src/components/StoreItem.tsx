@@ -12,7 +12,7 @@ type StoreItemProps = {
 export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
   const { getItemQuantity, increaseCartQuantity, decreaseCartQuantity } = useShoppingCart();
   return (
-    <div className="">
+    <div className="hover:scale-105 transition-all duration-200">
       <img className="w-full h-40 object-cover rounded-t-xl" src={imgUrl} alt={name} />
       <div className='p-4 flex flex-col gap-3 bg-gray-500 rounded-b-xl'>
         <div className="flex justify-between">
@@ -23,7 +23,7 @@ export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
           <button className="h-9 bg-lime-600 w-full shadow-sm hover:shadow-lg rounded-lg transition-all duration-200" onClick={() => increaseCartQuantity(id)}>add</button>
         ) : (
           <div className='h-9 flex items-center  rounded-lg select-none'>
-            <button className="grow p-2 flex justify-center bg-gradient-to-r from-red-700 border-y-[1px] border-l-[1px] rounded-l-lg" onClick={() => decreaseCartQuantity(id)}>
+            <button className="grow p-2 flex justify-center bg-gradient-to-r from-gray-700 hover:from-red-700 border-y-[1px] border-l-[1px] rounded-l-lg transition-all duration-200" onClick={() => decreaseCartQuantity(id)}>
               {getItemQuantity(id) === 1 ? (
                 <AiOutlineDelete/>
               ) : (
@@ -33,7 +33,7 @@ export const StoreItem = ({ id, name, price, imgUrl }: StoreItemProps) => {
               <p className="w-16 text-xl font-semibold text-center">
                 { getItemQuantity(id) }
               </p>
-            <button className="grow p-2 flex justify-center bg-gradient-to-l from-green-700 border-y-[1px] border-r-[1px] rounded-r-lg" onClick={() => increaseCartQuantity(id)}>
+            <button className="grow p-2 flex justify-center bg-gradient-to-l from-gray-700 hover:from-green-700 border-y-[1px] border-r-[1px] rounded-r-lg" onClick={() => increaseCartQuantity(id)}>
               <AiOutlinePlusCircle/>
             </button>
           </div>

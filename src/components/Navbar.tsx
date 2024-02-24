@@ -25,7 +25,7 @@ export const Navbar = () => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isHamMenu, setIsHamMenu] = useState<boolean>(false);
   // const [isCartMenu, setIsCartMenu] = useState<boolean>(false);
-  const { openCart, closeCart, cartItems, cartQuantity, isCartMenu, decreaseCartQuantity, increaseCartQuantity } = useShoppingCart();
+  const { openCart, cartQuantity } = useShoppingCart();
   const linkClass = ({ isActive, isPending }: LinkClassProps) => isPending ? "text-red-900" : isActive ? "text-lime-500" : "transition-all duration-300 hover:text-neutral-400";
   const hoverAnimation = (bool: boolean) => setIsHover(bool)
 
